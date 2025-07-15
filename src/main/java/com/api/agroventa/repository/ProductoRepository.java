@@ -8,4 +8,5 @@ import com.api.agroventa.model.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     List<Producto> findByCategoria(Producto.Categoria categoria);
+    List<Producto> findTop5ByOrderByStockDesc();
 }
