@@ -113,4 +113,10 @@ public class ProductoService {
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
+
+    public List<ProductoResponse> obtenerProductosDestacados() {
+        return repository.findTop5ByOrderByStockDesc().stream()
+                .map(this::toDto)
+                .toList();
+    }
 }

@@ -139,4 +139,25 @@ public class ProductoController {
                 .data(data)
                 .build());
     }
+
+    @GetMapping("/destacados")
+    public ResponseEntity<CustomResponse<List<ProductoResponse>>> obtenerProductosDestacados() {
+        try {
+            List<ProductoResponse> productos = service.obtenerProductosDestacados();
+            return ResponseEntity.ok(
+                    CustomResponse.<List<ProductoResponse>>builder()
+                            .type("success")
+                            .message("Productos destacados obtenidos correctamente")
+                            .data(productos)
+                            .build());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(
+                    CustomResponse.<List<ProductoResponse>>builder()
+                            .type("error")
+                            .message("Error al obtener productos destacados: " + e.getMessage())
+                            .data(null)
+                            .build());
+        }
+    }
+
 }
